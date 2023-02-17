@@ -1,9 +1,9 @@
-const jsonUrl = './src/json/vaxsites.json';
-const badgeWrapper = '#badge-wrapper';
-const noResult = '#no-result';
-const bodyHere = '.list';
-const allData = [];
-const jsonData = [];
+var jsonUrl = './src/json/vaxsites.json';
+var badgeWrapper = '#badge-wrapper';
+var noResult = '#no-result';
+var bodyHere = '.list';
+var allData = [];
+var jsonData = [];
 
 $.ajax({
 	url: jsonUrl,
@@ -29,24 +29,24 @@ $.ajax({
 // JSONの内容を表示
 function display() {
 	$(bodyHere).empty();
-	const html = '';
-	for (const i = 0; i < jsonData.length; i++) {
-		const vaxSiteThird = jsonData[i].third;
-		const vaxSiteBookingString = jsonData[i].booking;
-		const vaxSitePharma = jsonData[i].pharma;
+	var html = '';
+	for (var i = 0; i < jsonData.length; i++) {
+		var vaxSiteThird = jsonData[i].third;
+		var vaxSiteBookingString = jsonData[i].booking;
+		var vaxSitePharma = jsonData[i].pharma;
 		
-		const vaxSiteStatus = jsonData[i].status;
-		const vaxSiteWeb = jsonData[i].web;
-		const vaxSiteName = jsonData[i].name;
-		const vaxSiteAddress = jsonData[i].address;
-		const vaxSiteMap = jsonData[i].map;
-		const vaxSiteAge = jsonData[i].age;
+		var vaxSiteStatus = jsonData[i].status;
+		var vaxSiteWeb = jsonData[i].web;
+		var vaxSiteName = jsonData[i].name;
+		var vaxSiteAddress = jsonData[i].address;
+		var vaxSiteMap = jsonData[i].map;
+		var vaxSiteAge = jsonData[i].age;
 		if (window.innerWidth < 480) {
-			const vaxSiteAgeMobile = vaxSiteAge.replace(/以上/g, '+');
+			var vaxSiteAgeMobile = vaxSiteAge.replace(/以上/g, '+');
 		}	
-		const vaxSiteGeneral = jsonData[i].general;
-		const vaxSiteNote = jsonData[i].note;
-		const vaxSiteBooking = vaxSiteBookingString.replace(/LINE/g, '<a href="https://list.botlogy.com/" target="_blank">LINE</a>').replace(/ライン/g, 'LINE');
+		var vaxSiteGeneral = jsonData[i].general;
+		var vaxSiteNote = jsonData[i].note;
+		var vaxSiteBooking = vaxSiteBookingString.replace(/LINE/g, '<a href="https://list.botlogy.com/" target="_blank">LINE</a>').replace(/ライン/g, 'LINE');
 		
 		html +=
 		'<div class="frame" data-accept="' + jsonData[i].accept +
@@ -143,7 +143,7 @@ function display() {
 
 // List.js Plugin
 function loadListjs() {
-	const options = {
+	var options = {
 		valueNames: [{ data: ["accept"] }, "third", "booking", { data: ["ward"] }, { data: ["pharma"] }, "name", "address"],
 		searchDelay: 350,
 		searchColumns: ["name", "address"],
@@ -154,7 +154,7 @@ function loadListjs() {
 		}
 	};
 	
-	const listObj = new List("main", options);
+	var listObj = new List("main", options);
 	
 	// Copyright (c) 2016 by Whitney Gainer (https://codepen.io/wmg481/pen/RRRKdm)
 	// Released under the MIT license
@@ -162,22 +162,22 @@ function loadListjs() {
 	
 	// 絞り込む
 	$('#form-wrapper input, #form-wrapper select').change(function() {
-		const acceptValue = $('input[name=accept]:checked').val();
-		const thirdValue = $('input[name=third]:checked').val();
-		const bookingValue = $('input[name=booking]:checked').val();
-		const wardValue = $('input[name=ward]:checked')
+		var acceptValue = $('input[name=accept]:checked').val();
+		var thirdValue = $('input[name=third]:checked').val();
+		var bookingValue = $('input[name=booking]:checked').val();
+		var wardValue = $('input[name=ward]:checked')
 			.map(function() {
 				return $(this).val();
 			})
 			.get();
-		const pharmaValue = $('#filter-type').val();
+		var pharmaValue = $('#filter-type').val();
 
 		listObj.filter(function(item) {
-			const boolean_accept = false;
-			const boolean_third = false;
-			const boolean_booking = false;
-			const boolean_ward = false;
-			const boolean_pharma = false;
+			var boolean_accept = false;
+			var boolean_third = false;
+			var boolean_booking = false;
+			var boolean_ward = false;
+			var boolean_pharma = false;
 
 			if (acceptValue == null) {
 				boolean_accept = true;
@@ -226,7 +226,7 @@ function loadListjs() {
 	// https://opensource.org/licenses/mit-license.php
 	
 	// 件数を表示する
-	const itemNumber = ('#item-number');
+	var itemNumber = ('#item-number');
 	$(itemNumber).text(listObj.size());
 	listObj.on('updated', function(){
 		$(itemNumber).text(listObj.matchingItems.length);
@@ -239,8 +239,8 @@ function loadListjs() {
 
 // チェックボックスを全て選択または解除する
 $(function() {
-	const selectAll = $('#select-all');
-	const wardInput = $('#filter-ward input');
+	var selectAll = $('#select-all');
+	var wardInput = $('#filter-ward input');
 	$(selectAll).on('click', function() {
 		$(wardInput).prop('checked', this.checked);
 	});
